@@ -1,14 +1,14 @@
 /*
  * Create a list that holds all of your cards
  */
+const deck = document.querySelector('.deck');
+const cards = document.getElementsByClassName('card') ;
+const symbols = Array.from(document.querySelectorAll('.card i'));
 
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -24,6 +24,44 @@ function shuffle(array) {
 
     return array;
 }
+
+
+/*
+ * Display the cards on the page
+ *   - shuffle the list of cards using the provided "shuffle" method above
+ *   - loop through each card and create its HTML
+ *   - add each card's HTML to the page
+ */
+
+
+function createDeck() {
+	deck.innerHTML = "";
+	let shuffledSymbols = shuffle(symbols);
+
+	for(let i = 0; i < 16; i++) {
+		// Creates individual cards
+		let card = document.createElement('li');
+		card.classList.add('card');
+
+		// Creates the symbol on the card
+		let symbol = document.createElement('i');
+		let symbolClasses = shuffledSymbols[i].className.split(' ');
+		console.log(symbolClasses);
+		symbol.classList.add(symbolClasses[0], symbolClasses[1]);
+
+		// Add symbol to card then card to deck
+		card.appendChild(symbol);
+		console.log(card);
+		deck.appendChild(card);
+	}
+}
+
+createDeck();
+
+
+
+
+
 
 
 /*
