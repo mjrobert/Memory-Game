@@ -4,6 +4,7 @@
 const deck = document.querySelector('.deck');
 const cards = document.getElementsByClassName('card') ;
 const symbols = Array.from(document.querySelectorAll('.card i'));
+let flippedCards = []; //array to hold the flipped open cards
 
 
 
@@ -72,8 +73,39 @@ createDeck();
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- deck.addEventListener('click', function (event) {
+
+ deck.addEventListener('click', function click (event) {
     if (event.target.nodeName === 'LI') {  
-        event.target.classList.add("open", "show");
+        flipCard();
     }
 });
+
+ function flipCard() {
+ 	event.target.classList.add("open", "show");
+ 	console.log(event.target);
+ 	flippedCards.push(event.target);
+	console.log(flippedCards);
+
+ 	if (flippedCards.length === 2) {
+		cardCheck();
+
+ 	}
+
+ }
+
+ function cardCheck() {
+ 	console.log("card check");
+ }
+ 
+/*
+ function cardFlip () {
+    if (event.target.nodeName === 'LI') {  
+        event.target.classList.add("open", "show");
+ };
+
+ deck.addEventListener('click', function(){
+ 	cardFlip;
+ });
+
+*/
+
