@@ -47,12 +47,10 @@ function createDeck() {
 		// Creates the symbol on the card
 		let symbol = document.createElement('i');
 		let symbolClasses = shuffledSymbols[i].className.split(' ');
-		console.log(symbolClasses);
 		symbol.classList.add(symbolClasses[0], symbolClasses[1]);
 
 		// Add symbol to card then card to deck
 		card.appendChild(symbol);
-		console.log(card);
 		deck.appendChild(card);
 	}
 }
@@ -80,11 +78,10 @@ createDeck();
     }
 });
 
+
  function flipCard() {
  	event.target.classList.add("open", "show");
- 	console.log(event.target);
  	flippedCards.push(event.target);
-	console.log(flippedCards);
 
  	if (flippedCards.length === 2) {
 		cardCheck();
@@ -92,30 +89,26 @@ createDeck();
 
  }
 
+
  function cardCheck() {
  	console.log("card check");
  	if (flippedCards[0].innerHTML === flippedCards[1].innerHTML){
  		 	console.log("match");
 	}
+
 	else {
 		flippedCards[0].classList.remove("open", "show");
 		flippedCards[1].classList.remove("open", "show");
-				console.log("flippedCards = " + flippedCards);
-		flippedCards = "";
+		console.log("flippedCards = " + flippedCards);
+		removeCards(flippedCards, flippedCards.length);
 		console.log("flippedCards = " + flippedCards);
 	}
 
  }
  
-/*
- function cardFlip () {
-    if (event.target.nodeName === 'LI') {  
-        event.target.classList.add("open", "show");
- };
 
- deck.addEventListener('click', function(){
- 	cardFlip;
- });
-
-*/
-
+function removeCards(array, item) {
+    		for (let i = 0; i < item; i++ ) {
+        arr.pop();
+    }
+}
