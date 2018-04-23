@@ -119,5 +119,12 @@ createDeck();
     openCards[0].classList.add("match");
     openCards[1].classList.add("match");
 
+    if (document.getElementsByClassName("match").length === 16){
+      console.log("YOU FOUND ALL");
+
+      win();
+    }
+
+    openCards = [];
  }
  
