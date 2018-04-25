@@ -4,7 +4,13 @@
 const deck = document.querySelector('.deck');
 const cards = document.getElementsByClassName('card') ;
 const symbols = Array.from(document.querySelectorAll('.card i'));
+
+const starSet = document.getElementsByClassName('stars');
+const stars = document.getElementsByClassName('fa-star');
+const moves = document.querySelector(".moves");
+
 let openCards = []; //array to hold the flipped open cards
+let matchedPairs = []; //array to hold the matched card pairs
 
 
 
@@ -34,6 +40,22 @@ function shuffle(array) {
  *   - add each card's HTML to the page
  */
 
+/*
+function createStars () {
+      console.log(starSet);
+      starSet.REMOVE;
+      console.log(starSet);
+  for(let i = 0; i < 7; i++) {
+    let star = document.createElement('li');
+    star.classList.add("fa", "fa-star");
+    //console.log(star[i]);
+   starSet.appendChild(star);
+   console.log(starSet);
+  }
+}
+
+*/
+
 
 function createDeck() {
   deck.innerHTML = "";
@@ -54,6 +76,9 @@ function createDeck() {
     deck.appendChild(card);
   }
 }
+
+
+
 
 createDeck();
 
@@ -87,7 +112,10 @@ createDeck();
     openCards.push(event.target);
 
     if (openCards.length === 2) {
+      moves++;
+    //  stars();
       cardCheck();
+
     }
   }
 
@@ -104,11 +132,13 @@ createDeck();
   }
 
   else {
-    openCards[0].classList.remove("open", "show");
-    openCards[1].classList.remove("open", "show");
-    openCards[0].classList.add("closed");
-    openCards[1].classList.add("closed");
-    openCards = [];
+    setTimeout (function() {
+      openCards[0].classList.remove("open", "show");
+      openCards[1].classList.remove("open", "show");
+      openCards[0].classList.add("closed");
+      openCards[1].classList.add("closed");
+      openCards = [];
+    }, 300);
   }
  }
 
@@ -118,8 +148,9 @@ createDeck();
     openCards[1].classList.remove("open", "show");
     openCards[0].classList.add("match");
     openCards[1].classList.add("match");
+    matchedPairs.push(openCards);
 
-    if (document.getElementsByClassName("match").length === 16){
+    if (matchedPairs.length === 8){
       console.log("YOU FOUND ALL");
 
       win();
@@ -128,3 +159,19 @@ createDeck();
     openCards = [];
  }
  
+
+
+/*
+
+ function stars() {
+  if (moves => 10 && moves < 13) {
+           stars[0].children[i].style.visibility = 'collapse';
+  }
+
+    if (moves > 13) {
+           stars[1].children[i].style.visibility = 'collapse';
+  }
+
+ }
+
+ */
