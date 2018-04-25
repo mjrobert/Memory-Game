@@ -4,15 +4,17 @@
 const deck = document.querySelector('.deck');
 const cards = document.getElementsByClassName('card') ;
 const symbols = Array.from(document.querySelectorAll('.card i'));
-
-const starSet = document.getElementsByClassName('stars');
-const stars = document.getElementsByClassName('fa-star');
-const moves = document.querySelector(".moves");
-
 let openCards = []; //array to hold the flipped open cards
-let matchedPairs = []; //array to hold the matched card pairs
+let matchedPairs = []; //array to hold the matched cards
 
 
+
+// declaring move variable
+let moves = 0;
+let counter = document.querySelector('.moves');
+
+// declare variables for star icons
+const stars = document.querySelectorAll('.fa-star');
 
 
 
@@ -40,22 +42,6 @@ function shuffle(array) {
  *   - add each card's HTML to the page
  */
 
-/*
-function createStars () {
-      console.log(starSet);
-      starSet.REMOVE;
-      console.log(starSet);
-  for(let i = 0; i < 7; i++) {
-    let star = document.createElement('li');
-    star.classList.add("fa", "fa-star");
-    //console.log(star[i]);
-   starSet.appendChild(star);
-   console.log(starSet);
-  }
-}
-
-*/
-
 
 function createDeck() {
   deck.innerHTML = "";
@@ -76,9 +62,6 @@ function createDeck() {
     deck.appendChild(card);
   }
 }
-
-
-
 
 createDeck();
 
@@ -112,10 +95,8 @@ createDeck();
     openCards.push(event.target);
 
     if (openCards.length === 2) {
-      moves++;
-    //  stars();
+      moveCounter();
       cardCheck();
-
     }
   }
 
@@ -123,7 +104,7 @@ createDeck();
 
 
 
- function cardCheck() {
+  function cardCheck() {
 
   console.log("card check");
   if (openCards[0].innerHTML === openCards[1].innerHTML){
@@ -138,7 +119,7 @@ createDeck();
       openCards[0].classList.add("closed");
       openCards[1].classList.add("closed");
       openCards = [];
-    }, 300);
+    }, 400);
   }
  }
 
@@ -157,21 +138,47 @@ createDeck();
     }
 
     openCards = [];
+
  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ function moveCounter() {
+  moves++;
+  //CHECK IF LINE BELOW IS NEEDED
+  counter.innerHTML = moves;
+  /* start timer on first click
+  if(moves == 1){ 
+    second = 0;
+    minute = 0;
+    hour = 0;
+    startTimer();
+  }
+  */
+  // setting rates based on moves
+  if (moves > 9 && moves < 15){
+    for (i= 0; i < 3; i++) {
+      if (i > 1) {
+        stars[i].style.visibility = 'collapse';
+      }
+    }
+  }
+  else if (moves > 15) {
+    for (i = 0; i < 3; i++) {
+      if (i > 0) {
+        stars[i].style.visibility = 'collapse';
+      }
+    }
+  }
+}
  
-
-
-/*
-
- function stars() {
-  if (moves => 10 && moves < 13) {
-           stars[0].children[i].style.visibility = 'collapse';
-  }
-
-    if (moves > 13) {
-           stars[1].children[i].style.visibility = 'collapse';
-  }
-
- }
-
- */
