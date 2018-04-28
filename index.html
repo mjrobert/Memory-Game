@@ -22,9 +22,15 @@
         		<li><i class="fa fa-star"></i></li>
         	</ul>
 
-        	<span class="moves">3</span> Moves
+        	<span class="moves"></span> Moves
+
+            <div id = "timer" class ="timer">
+                <span id ="minutes">0</span> minutes 
+                <span id ="seconds">0</span> seconds
+            </div>
 
             <div class="restart">
+                Restart game  
         		<i class="fa fa-repeat"></i>
         	</div>
         </section>
@@ -80,6 +86,16 @@
             </li>
         </ul>
     </div>
+
+<!-- MODAL (modified from https://sabe.io/tutorials/how-to-create-modal-popup-box) -->
+
+
+    <div class="modal">
+        <div class="modal-content">
+            <h2>Congratulations</h2>
+        </div>
+    </div>
+    
 
     <script src="js/app.js"></script>
 </body>

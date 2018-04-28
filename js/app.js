@@ -15,6 +15,22 @@ let counter = document.querySelector('.moves');
 
 // declare variables for star icons
 const stars = document.querySelectorAll('.fa-star');
+let starCount = 3;
+
+
+    // Getting elements for timer and define firstclick
+let minutes = document.getElementById('minutes');
+let seconds = document.getElementById('seconds');
+let time;
+let firstClick = true;
+
+const modalContent = document.querySelector(".modal-content");
+const modal = document.querySelector(".modal");
+
+const resetButton = document.querySelector(".restart");
+resetButton.addEventListener('click', reset()); 
+
+
 
 
 
@@ -94,6 +110,13 @@ createDeck();
     event.target.classList.add("open", "show");
     openCards.push(event.target);
 
+    if (firstClick === true) {
+   timer();
+    firstClick = false;
+
+
+  }
+
     if (openCards.length === 2) {
       moveCounter();
       cardCheck();
@@ -132,9 +155,11 @@ createDeck();
     matchedPairs.push(openCards);
 
     if (matchedPairs.length === 8){
-      console.log("YOU FOUND ALL");
+      seconds = seconds.textContent;
+      minutes = minutes.textContent;
 
-      win();
+      toggleModal();
+
     }
 
     openCards = [];
@@ -155,25 +180,18 @@ createDeck();
 
  function moveCounter() {
   moves++;
-  //CHECK IF LINE BELOW IS NEEDED
   counter.innerHTML = moves;
-  /* start timer on first click
-  if(moves == 1){ 
-    second = 0;
-    minute = 0;
-    hour = 0;
-    startTimer();
-  }
-  */
-  // setting rates based on moves
-  if (moves > 9 && moves < 15){
+
+  if (moves > 18 && moves < 22){
+    starCount = 2;
     for (i= 0; i < 3; i++) {
       if (i > 1) {
         stars[i].style.visibility = 'collapse';
       }
     }
   }
-  else if (moves > 15) {
+  else if (moves > 22) {
+    starCount = 3;
     for (i = 0; i < 3; i++) {
       if (i > 0) {
         stars[i].style.visibility = 'collapse';
@@ -181,4 +199,70 @@ createDeck();
     }
   }
 }
+
+
+/*
+*
+TIMER
+*
+*/
+
+
+function timer(startTimer) {
+  time = setInterval(function() {
+    seconds.innerText++;
+    if (seconds.innerText == 60) {
+      minutes.innerText++;
+      seconds.innerText = 0;
+    }
+  }, 1000);
+  return timer;
+}
+
+
+/*
+*
+MODAL
+*
+*/
+
+
+    function toggleModal() {
+        modal.classList.toggle("show-modal");
+        let winMessage;
+        
+        if (minutes < 1){
+        winMessage = "You have completed the game in " + seconds;
+        
+      }
+
+      else if (minutes === 1) {
+          const winMessage = "You have completed the game in " + minutes + " minute and " + seconds;
+      }
+
+      else  {
+          const winMessage = "You have completed the game in " + minutes + " minutes and " + seconds;
+      }
+
+      winMessage += " seconds. You took " + moves + " moves, earning you " + starCount + " stars."
+      const winText = document.createElement('p');
+      winText.textContent = winMessage;
+      modalContent.appendChild(winText);
+      modalContent.appendChild(resetButton);
+
+      resetButton.addEventListener('click', reset()); 
+
+
+    }
+
+
+
+
+function reset(){
+  console.log("hello");
+}
+
+
+
+
  
