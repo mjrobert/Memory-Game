@@ -16,6 +16,7 @@ let counter = document.querySelector('.moves');
 // declare variables for star icons
 const stars = document.querySelectorAll('.fa-star');
 let starCount = 3;
+let starRating = 3;
 
 
     // Getting elements for timer and define firstclick
@@ -27,8 +28,10 @@ let firstClick = true;
 const modalContent = document.querySelector(".modal-content");
 const modal = document.querySelector(".modal");
 
-const resetButton = document.querySelector(".restart");
-resetButton.addEventListener('click', reset()); 
+//const resetButton = document.querySelector(".restart");
+//resetButton.addEventListener('click', reset()); 
+
+
 
 
 
@@ -187,6 +190,7 @@ createDeck();
     for (i= 0; i < 3; i++) {
       if (i > 1) {
         stars[i].style.visibility = 'collapse';
+        starRating = 2;
       }
     }
   }
@@ -195,6 +199,7 @@ createDeck();
     for (i = 0; i < 3; i++) {
       if (i > 0) {
         stars[i].style.visibility = 'collapse';
+        starRating = 1;
       }
     }
   }
@@ -229,9 +234,34 @@ MODAL
 
     function toggleModal() {
         modal.classList.toggle("show-modal");
+            let winMove = document.getElementById('winMove')
+
+     if (minutes < 1){
+document.getElementById('winText').innerHTML = (seconds + " seconds. You took " + moves + " moves, winning " + starRating + " stars." );
+      }
+            else if (minutes === 1) {
+              document.getElementById('winText').innerHTML = (minutes + " minute and " + seconds + " seconds. You took " + moves + " moves, winning " + starRating + " stars." );
+      }
+            else  {
+ document.getElementById('winText').innerHTML = (minutes + " minutes and " + seconds + " seconds. You took " + moves + " moves, winning " + starRating + " stars." );
+      }
+
+const resetButton = document.getElementById("replay").onclick = function(event) {
+}
+
+    }
+
+
+
+
+
+
+/*
+    function toggleModal() {
+        modal.classList.toggle("show-modal");
         let winMessage;
-        
-        if (minutes < 1){
+
+      if (minutes < 1){
         winMessage = "You have completed the game in " + seconds;
         
       }
@@ -245,17 +275,19 @@ MODAL
       }
 
       winMessage += " seconds. You took " + moves + " moves, earning you " + starCount + " stars."
-      const winText = document.createElement('p');
+      const winText = document.querySelector('.winText');
       winText.textContent = winMessage;
       modalContent.appendChild(winText);
-      modalContent.appendChild(resetButton);
 
-      resetButton.addEventListener('click', reset()); 
+
+      //modalContent.appendChild(modalReplay);
+
+ 
 
 
     }
 
-
+*/
 
 
 function reset(){
@@ -263,6 +295,5 @@ function reset(){
 }
 
 
-
-
+  //document.getElementById('replay').addEventListener('click', reset());
  
