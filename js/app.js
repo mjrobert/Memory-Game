@@ -6,9 +6,6 @@
  const symbols = Array.from(document.querySelectorAll('.card i'));
  const restartButton = document.querySelector('.fa-repeat');
 
-
-
-// declaring move variables
 let moves, starCount , starRating, time, firstClick, openCards, matchedPairs, winMinutes, winSeconds;
 let seconds = 0, minutes = 0;
 
@@ -127,7 +124,7 @@ function flipCard() {
 
 
 
-// // //CARD CHECKING AND MATCHING FUNCTIONS
+// // // CARD CHECKING AND MATCHING FUNCTIONS
 
 function cardCheck() {
 
@@ -236,14 +233,13 @@ function toggleModal() {
 
 
 
-
+// // // RUN INITIALLY WHEN PAGE IS LOADED
 
 restartButton.addEventListener('click', function() {
   clearInterval(time);
   start();
 }
 );
-
 
 
 
